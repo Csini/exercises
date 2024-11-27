@@ -51,6 +51,9 @@ public class _Main {
 				statement.append(i.getStatement());
 
 			} catch (PlayTypeException e) {
+
+				// FIXME
+				System.err.println(e);
 				statement.append("error");
 			}
 		});
@@ -66,13 +69,23 @@ public class _Main {
 
 		JsonObject plays = JsonFileUtil.PARSER.parse(fileContentPlays).getAsJsonObject();
 		JsonArray invoices = JsonFileUtil.PARSER.parse(fileContentInvoices).getAsJsonArray();
-		
+
 		return _statement(invoices, plays);
 	}
 
 	protected static void _main(String[] args) throws Exception {
 
-		System.out.println(_statement("invoices.json", "plays.json"));
+		String pathname_invoices = "invoices.json";
+		String pathname_plays = "plays.json";
+
+		if (args!=null && args.length > 1) {
+			pathname_invoices = args[0];
+			pathname_plays = args[1];
+		}
+		
+		System.out.println("using invoices from  : " + pathname_invoices);
+		System.out.println("using plays from     : " + pathname_plays);
+		System.out.println(_statement(pathname_invoices, pathname_plays));
 	}
 
 }

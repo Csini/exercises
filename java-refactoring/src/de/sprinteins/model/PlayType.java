@@ -51,7 +51,7 @@ public class PlayType {
 			if(env_playTypesJsonFileName!=null && !"".equals(env_playTypesJsonFileName)) {
 				playTypesJsonFileName = env_playTypesJsonFileName;
 			}
-			System.out.println("using playtype config: " + playTypesJsonFileName);
+			System.out.println("using PlayType config: " + playTypesJsonFileName + "\n");
 			JsonFileUtil.readJsonArray(playTypesJsonFileName).forEach(element -> {
 				JsonObject elementJsonObject = element.getAsJsonObject();
 				VALUES.put(elementJsonObject.get("name").getAsString(), new PlayType(elementJsonObject));
